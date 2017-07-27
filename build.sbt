@@ -27,8 +27,7 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.1.5" % "runtime",
   "org.eclipse.jetty" % "jetty-webapp" % "9.2.15.v20160210" % "container",
   "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided"
-  // ,mysqlJDBC
-  ,h2
+  ,mysqlJDBC
   ,json
   ,jackson
   ,scalike
