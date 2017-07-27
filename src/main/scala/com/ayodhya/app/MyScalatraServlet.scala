@@ -3,7 +3,7 @@ package com.ayodhya.app
 import org.scalatra._
 import org.json4s.{DefaultFormats, Formats}
 import org.scalatra.json._
-import org.json4s.JsonDSL._
+// import org.json4s.JsonDSL._
 import queryHandler._
 
 class MyScalatraServlet extends ServerMysqlApiStack  with JacksonJsonSupport{
