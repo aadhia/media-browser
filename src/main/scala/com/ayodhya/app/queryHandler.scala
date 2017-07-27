@@ -19,8 +19,8 @@ object queryHandler {
 
     def getSongByArtist(artistQuery:String):List[JObject] = {
         val artist = s"%$artistQuery%"
-        sql"Select strTitle, strArtists From song Where strArtists Like ${artist}"
-            .map(rs => ("title"->rs.string("strTitle")) ~ ("artist"->rs.string("strArtists")) )
+        sql"Select strTitle, S.strArtists, strAlbum From song S, album A Where S.idAlbum = A.idAlbum and S.strArtists Like ${artist}"
+            .map(rs => ("title"->rs.string("strTitle")) ~ ("artist"->rs.string("strArtists")) ~ ("album"->rs.string("strAlbum")) )
             .list
             .apply()
     }
