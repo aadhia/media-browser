@@ -11,8 +11,9 @@ object queryHandler {
     def getArtists:List[String] = 
         sql"Select strArtists From songview Group by strArtists".map(rs => rs.string("strArtists")).list.apply()
 
-    def getSongByArtist(artist:String):List[(String,String)] = {
-        sql"Select strTitle, strArtists From song Where strArtists Like ${'%' + artist + '%'}"
+    def getSongByArtist(artistQuery:String):List[(String,String)] = {
+        val artist = s"%$artistQuery%"
+        sql"Select strTitle, strArtists From song Where strArtists Like ${artist}"
             .map(rs => (rs.string("strTitle"),rs.string("strArtists")) ).list.apply()
     }
 }
