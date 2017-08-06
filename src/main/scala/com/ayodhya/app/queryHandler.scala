@@ -7,13 +7,13 @@ import org.json4s._
 
 object queryHandler {
 
-    Class.forName("com.mysql.jdbc.Driver")
-    ConnectionPool.singleton("jdbc:mysql://ayodhya.adhia.net:13306/MyMusic56", "xbmc", "xbmc")
+    Class.forName("org.postgresql.Driver")
+    ConnectionPool.singleton("jdbc:postgresql:pagila", "arjun", "")
     implicit val session = AutoSession
 
     def getArtists:List[String] = 
-        sql"Select strArtists From songview Group by strArtists"
-            .map(rs => rs.string("strArtists"))
+        sql"Select * From actor"
+            .map(rs => rs.string("first_name"))
             .list
             .apply()
 
