@@ -11,9 +11,9 @@ object queryHandler {
     ConnectionPool.singleton("jdbc:postgresql:pagila", "arjun", "")
     implicit val session = AutoSession
 
-    def getArtists:List[String] = 
-        sql"Select * From actor"
-            .map(rs => rs.string("first_name"))
+    def getArtists:List[JObject] =
+        sql"Select distinct * From actor"
+            .map(rs => ("id" -> rs.string("actor_id")) ~ ("first" -> rs.string("first_name")) ~ ("last" -> rs.string("last_name")))
             .list
             .apply()
 
